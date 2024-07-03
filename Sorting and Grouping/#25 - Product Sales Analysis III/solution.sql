@@ -11,10 +11,10 @@ The result format is in the following example.
 */
 WITH cte AS(
     SELECT
-            product_id,
-            MIN("year") first_year
-        FROM Sales
-        GROUP BY 1
+        product_id,
+        MIN("year") first_year
+    FROM Sales
+    GROUP BY 1
 )
 SELECT
     fy.product_id,
