@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS Customer;
+DROP TABLE IF EXISTS RequestAccepted;

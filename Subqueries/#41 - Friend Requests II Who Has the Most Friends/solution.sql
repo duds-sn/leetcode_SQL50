@@ -1,31 +1,28 @@
 /*
-You are the restaurant owner and you want to analyze a possible expansion (there will be at least one customer every day).
+Write a solution to find the people who have the most friends and the most friends number.
 
-Compute the moving average of how much the customer paid in a seven days window (i.e., current day + 6 days before). average_amount should be rounded to two decimal places.
-
-Return the result table ordered by visited_on in ascending order.
+The test cases are generated so that only one person has the most friends.
 
 The result format is in the following example.
-+--------------+--------------+----------------+
-| visited_on   | amount       | average_amount |
-+--------------+--------------+----------------+
-| 2019-01-07   | 860          | 122.86         |
-| 2019-01-08   | 840          | 120            |
-| 2019-01-09   | 840          | 120            |
-| 2019-01-10   | 1000         | 142.86         |
-+--------------+--------------+----------------+
++----+-----+
+| id | num |
++----+-----+
+| 3  | 3   |
++----+-----+
 */
-SELECT
-	c.visited_on,
-	SUM(u.amount) amount,
-	ROUND( SUM(u.amount) / 7::numeric, 2) average_amount
-FROM (
+WITH cte AS (
 	SELECT
-		DISTINCT visited_on 
-	FROM Customer
-) c
-LEFT JOIN Customer u
-	ON u.visited_on BETWEEN c.visited_on - 6 AND c.visited_on
+		requester_id id
+	FROM RequestAccepted
+	UNION ALL
+	SELECT
+		accepter_id id
+	FROM RequestAccepted
+)
+SELECT
+	id,
+	COUNT(id) num
+FROM cte
 GROUP BY 1
-HAVING COUNT( DISTINCT u.visited_on ) = 7
-ORDER BY 1
+ORDER BY 2 DESC
+LIMIT 1
