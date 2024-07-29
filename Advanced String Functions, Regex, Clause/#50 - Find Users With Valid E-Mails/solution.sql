@@ -16,6 +16,14 @@ The result format is in the following example.
 | 4       | Sally     | sally.come@leetcode.com |
 +---------+-----------+-------------------------+
 */
+
+/*
+https://www.postgresql.org/docs/current/functions-matching.html
+https://hevodata.com/learn/postgresql-regex/
+https://www.regexplanet.com/advanced/postgresql/index.html
+https://regex101.com/
+https://regexr.com/
+*/
 SELECT
 	*
 FROM Users
